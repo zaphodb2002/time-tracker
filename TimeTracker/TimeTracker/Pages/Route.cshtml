@@ -1,0 +1,25 @@
+﻿@page
+@model TimeTracker.Pages.RouteModel
+@{
+    ViewData["Title"] = "Route";
+}
+<h1 class="text-center">Route</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Location</th>
+            <th>Timestamp</th>
+            <th>Average Time</th>
+            <th>Today's Difference</th>
+        </tr>
+    </thead>
+@foreach (var location in Model.Locations)
+{
+    <tr>
+        <td>@location.Name</td>
+        <td><button>Log Now</button></td>
+    </tr>
+}
+</table>
+
