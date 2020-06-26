@@ -19,9 +19,22 @@ namespace TimeTracker.Pages
         {
             this.locationData = locationData;
         }
+
         public void OnGet()
         {
             Locations = locationData.GetAll();
+        }
+
+        public IActionResult OnPost(uint locationId)
+        {
+            var updatedLocation = locationData.Get(locationId);
+
+            updatedLocation.TimeEntries.Add(new TimeEntry { Arrival = DateTime.Now });
+
+            locationData.Update(locationId, updatedLocation);
+            locationData.Commit();
+
+            return Redirect("./");
         }
     }
 }

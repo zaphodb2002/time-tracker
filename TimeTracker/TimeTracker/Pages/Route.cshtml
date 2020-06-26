@@ -14,14 +14,68 @@
             <th>Today's Difference</th>
         </tr>
     </thead>
-@foreach (var location in Model.Locations)
-{
-    <tr>
-        <td>
-            <a asp-page="/Locations/Detail" asp-route-locationId="@location.Id"> @location.Name </a>
-        </td>
-        <td><button>Log Now</button></td>
-    </tr>
-}
+    @foreach (var location in Model.Locations)
+    {
+        var todaysEntry = location.GetTimeEntryForToday();
+        var avgTime = location.GetAverageTime();
+        <tr>
+            <td>
+                <a asp-page="/Locations/Detail" asp-route-locationId="@location.Id"> @location.Name </a>
+            </td>
+            <td>
+                @if (todaysEntry != null)
+                {
+                    TimeSpan todaysEntryValue = (TimeSpan)todaysEntry;
+                    @todaysEntryValue.ToString(@"hh\:mm")
+                }
+                else
+                {
+                    <button class="btn btn-primary" id="location-@location.Id">Log Now</button>
+                }
+
+            </td>
+            <td>
+                @if (location.GetAverageTime() != null)
+                {
+                    TimeSpan avgTimeValue = (TimeSpan)avgTime;
+                    @avgTimeValue.ToString(@"hh\:mm");
+                }
+
+            </td>
+            <td>
+                @if (todaysEntry != null && avgTime != null)
+                {
+                    TimeSpan todaysEntryValue = (TimeSpan)todaysEntry;
+                    TimeSpan avgTimeValue = (TimeSpan)avgTime;
+                    @avgTimeValue.Subtract(todaysEntryValue).Minutes;
+                }
+            </td>
+        </tr>
+    }
 </table>
+
+<form method="post" id="form">
+    <input id="location-id" type="hidden" name="locationId" value=""/>
+</form>
+
+
+<script>
+    window.onload = function () {
+        @foreach (var location in Model.Locations)
+        {
+        <text>
+        var button = document.getElementById("location-@location.Id");
+        if (button !== null) {
+            button.onclick = function () {
+                document.getElementById("location-id").value = "@location.Id";
+                document.getElementById("form").submit();
+            }
+        };
+        </text>
+        }
+
+    }
+</script>
+
+
 

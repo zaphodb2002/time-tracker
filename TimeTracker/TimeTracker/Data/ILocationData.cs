@@ -13,5 +13,6 @@ namespace TimeTracker.Data
         public Location Add(Location locationToAdd);
         public Location Update(uint idToUpdate, Location updatedLocation);
         public uint Delete(Location LocationToDelete);
+        public int Commit();
     }
 }

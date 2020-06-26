@@ -33,6 +33,11 @@ namespace TimeTracker.Data
             return locationToAdd;
         }
 
+        public int Commit()
+        {
+            return 0;
+        }
+
         public uint Delete(Location LocationToDelete)
         {
             throw new NotImplementedException();
@@ -50,7 +55,14 @@ namespace TimeTracker.Data
 
         public Location Update(uint idToUpdate, Location updatedLocation)
         {
-            throw new NotImplementedException();
+            var locationToUpdate = Get(idToUpdate);
+            if (locationToUpdate != null)
+            {
+                locationToUpdate.Name = updatedLocation.Name;
+                locationToUpdate.TimeEntries = updatedLocation.TimeEntries;
+            }
+
+            return locationToUpdate;
         }
     }
 }
