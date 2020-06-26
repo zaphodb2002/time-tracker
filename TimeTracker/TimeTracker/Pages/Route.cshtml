@@ -17,7 +17,9 @@
 @foreach (var location in Model.Locations)
 {
     <tr>
-        <td>@location.Name</td>
+        <td>
+            <a asp-page="/Locations/Detail" asp-route-locationId="@location.Id"> @location.Name </a>
+        </td>
         <td><button>Log Now</button></td>
     </tr>
 }

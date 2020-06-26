@@ -1,0 +1,10 @@
+﻿@page "/Locations/{locationId}"
+@model TimeTracker.Pages.DetailModel
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<h1>@Model.Location.Name</h1>
+
+<a asp-page="/Route">Back to Route</a>
+
