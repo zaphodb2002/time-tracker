@@ -25,7 +25,7 @@ namespace TimeTracker.Pages
             Locations = locationData.GetAll();
         }
 
-        public IActionResult OnPost(uint locationId)
+        public IActionResult OnPost(long locationId)
         {
             var updatedLocation = locationData.Get(locationId);
 

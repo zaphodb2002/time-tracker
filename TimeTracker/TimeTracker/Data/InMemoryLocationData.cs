@@ -38,12 +38,17 @@ namespace TimeTracker.Data
             return 0;
         }
 
-        public uint Delete(Location LocationToDelete)
+        public Location Delete(long IdToDelete)
         {
-            throw new NotImplementedException();
+            var locationToDelete = locations.FirstOrDefault(x => x.Id == IdToDelete);
+            if (locationToDelete != null)
+            {
+                locations.Remove(locationToDelete);
+            }
+            return locationToDelete;
         }
 
-        public Location Get(uint id)
+        public Location Get(long id)
         {
             return locations.FirstOrDefault(x => x.Id == id);
         }
@@ -53,7 +58,7 @@ namespace TimeTracker.Data
             return locations;
         }
 
-        public Location Update(uint idToUpdate, Location updatedLocation)
+        public Location Update(long idToUpdate, Location updatedLocation)
         {
             var locationToUpdate = Get(idToUpdate);
             if (locationToUpdate != null)

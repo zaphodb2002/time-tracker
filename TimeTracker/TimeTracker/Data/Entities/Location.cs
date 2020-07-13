@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
@@ -8,7 +10,10 @@ namespace TimeTracker.Data.Entities
 {
     public class Location
     {
-        public uint Id { get; set; }
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public long Id { get; set; }
+        [Required]
         public string Name { get; set; }
         public List<TimeEntry> TimeEntries { get; set; }
 

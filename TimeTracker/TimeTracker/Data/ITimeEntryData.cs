@@ -9,8 +9,8 @@ namespace TimeTracker.Data
     public interface ITimeEntryData
     {
         public List<TimeEntry> GetAll();
-        public TimeEntry Get(uint id);
-        public TimeEntry Update(uint idToUpdate, TimeEntry updatedTimeEntry);
+        public TimeEntry Get(long id);
+        public TimeEntry Update(long idToUpdate, TimeEntry updatedTimeEntry);
         public uint Delete(TimeEntry timeEntryToDelete);
     }
 }

@@ -6,3 +6,21 @@
 
 <h1>List</h1>
 
+@foreach(var location in Model.Locations)
+{
+<div class="row">
+    <div class="col">@location.Name</div>
+    <div class="col">
+        <a asp-page="/Locations/Detail" asp-route-locationId="@location.Id">
+            <div class="btn">Edit</div>
+        </a>
+</div>
+</div>
+}
+<div class="row">
+    <div class="col">
+        <a asp-page="/Locations/Detail" asp-route-locationId="0">
+            <div class="btn btn-primary">Add New</div>
+        </a>
+    </div>
+</div>

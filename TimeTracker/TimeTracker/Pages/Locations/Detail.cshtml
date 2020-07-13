@@ -6,5 +6,23 @@
 
 <h1>@Model.Location.Name</h1>
 
-<a asp-page="/Route">Back to Route</a>
+<form method="post">
+    <input type="hidden" asp-for="Location.Id" />
+    <div class="form-group">
+        <label asp-for="Location.Name"></label>
+        <input class="form-control" asp-for="Location.Name" />
+        <input type="submit" class="btn btn-primary" value="Save" />
+    </div>
+</form>
+
+
+<div class="row text-center">
+    <div class="col">
+        <a asp-page="/Route">Back to Route</a>
+    </div>
+    <div class="col">
+        <a asp-page="/Locations/">Back to Locations</a>
+    </div>
+</div>
+
 
